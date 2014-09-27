@@ -1,6 +1,6 @@
 {
   "name": "flow-read-array",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Converts an array to a readable stream.",
   "author": {
     "name": "Athan Reines",
