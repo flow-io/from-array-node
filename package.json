@@ -25,7 +25,10 @@
   "keywords": [
     "stream",
     "flow",
-    "flow.io"
+    "flow.io",
+    "readable",
+    "readstream",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/flow-io/read-array-node/issues"
@@ -36,11 +39,7 @@
     "mocha": "1.x.x",
     "coveralls": "^2.11.1",
     "istanbul": "^0.3.0",
-    "flow-read-array": "^1.0.0",
-    "flow-to-string": "^1.0.0",
-    "flow-newline": "^1.0.0",
-    "flow-mock-read": "^1.0.0",
-    "flow-mock-write": "^1.0.0"
+    "flow-mock-read": "^1.0.0"
   },
   "licenses": [
     {

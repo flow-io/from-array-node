@@ -4,8 +4,8 @@
 var // Expectation library:
 	chai = require( 'chai' ),
 
-	// Mock writing to a stream:
-	mockWrite = require( 'flow-mock-write' ),
+	// Readable stream class:
+	Readable = require( 'stream' ).Readable,
 
 	// Mock reading from a stream:
 	mockRead = require( 'flow-mock-read' ),
@@ -29,6 +29,46 @@ describe( 'flow-read-array', function tests() {
 		expect( stream ).to.be.a( 'function' );
 	});
 
-	it( 'should do something' );
+	it( 'should throw an error if not provided an array', function test() {
+		var values = [
+				5,
+				'5',
+				true,
+				NaN,
+				null,
+				undefined,
+				{},
+				function(){}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+
+		function badValue( value ) {
+			return function() {
+				stream( value );
+			};
+		}
+	});
+
+	it( 'should return a readable stream', function test() {
+		assert.instanceOf( stream([]), Readable );
+	});
+
+	it( 'should convert an array to a readable stream', function test( done ) {
+		var expected = [1,2,3,4];
+
+		mockRead( stream( expected ), onData );
+
+		function onData( error, actual ) {
+			if ( error ) {
+				assert.notOk( true );
+				return;
+			}
+			assert.deepEqual( expected, actual );
+			done();
+		}
+	});
 
 });

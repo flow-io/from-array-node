@@ -16,7 +16,13 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
+To convert an `array` into a readable stream,
 
+``` javascript
+var readArray = require( 'flow-ready-array' );
+
+var stream = readArray( [1,2,3,4] );
+```
 
 
 ## Examples
@@ -24,8 +30,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ``` javascript
 var toString = require( 'flow-to-string' ),
 	newline = require( 'flow-newline' ),
-	readArray = require( 'flow-read-array' ),
-	flowStream = require( 'flow-read-array' );
+	readArray = require( 'flow-read-array' );
 
 // Create some data...
 var data = new Array( 1000 );
@@ -36,12 +41,8 @@ for ( var i = 0; i < data.length; i++ ) {
 // Create a readable stream:
 var readStream = readArray( data );
 
-// Create a new flow stream:
-var stream = flowStream();
-
 // Pipe the data:
 readStream
-	.pipe( stream )
 	.pipe( toString() )
 	.pipe( newline() )
 	.pipe( process.stdout );
@@ -52,6 +53,11 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
+
+## Notes
+
+This stream is a Streams2 version of [event-stream](https://github.com/dominictarr/event-stream) and its `readArray()` method.
 
 
 ## Tests
