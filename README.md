@@ -16,7 +16,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To convert an `array` into a readable stream,
+To convert an `array` to a readable stream,
 
 ``` javascript
 var readArray = require( 'flow-ready-array' );
