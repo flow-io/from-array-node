@@ -22,7 +22,7 @@ To use the module,
 var readArray = require( 'flow-ready-array' );
 ```
 
-#### readyArray( arr[, options] )
+#### readArray( arr[, options] )
 
 Returns a readable `stream` where each emitted datum is an element from the input `array`. The stream __always__ operates in `objectMode`. All other Readable `options` are honored: `encoding` and `highWaterMark`.
 
