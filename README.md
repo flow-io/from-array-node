@@ -24,12 +24,23 @@ var readArray = require( 'flow-ready-array' );
 
 #### readyArray( arr[, options] )
 
-Returns a readable `stream` where each emitted datum is an element from the input `array`. This stream __always__ operates in `objectMode`. All other Readable `options` are honored: `encoding` and `highWaterMark`.
+Returns a readable `stream` where each emitted datum is an element from the input `array`. The stream __always__ operates in `objectMode`. All other Readable `options` are honored: `encoding` and `highWaterMark`.
 
 To convert an `array` to a readable stream,
 
 ``` javascript
 var stream = readArray( [1,2,3,4] );
+```
+
+The default `highWaterMark` is `16kb` and `encoding` is `null`. To set the `options`,
+
+``` javascript
+var opts = {
+		'encoding': 'utf8',
+		'highWaterMark': 8
+	};
+
+stream = readArray( ['b','e','e','p'], opts );
 ```
 
 
