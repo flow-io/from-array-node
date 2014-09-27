@@ -2,7 +2,7 @@ read-array
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Converts an array to a readable stream.
+> Converts an array to a [readable stream](http://nodejs.org/api/stream.html#stream_class_stream_readable).
 
 
 ## Installation
@@ -16,11 +16,19 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To convert an `array` to a readable stream,
+To use the module,
 
 ``` javascript
 var readArray = require( 'flow-ready-array' );
+```
 
+#### readyArray( arr[, options] )
+
+Returns a readable `stream` where each emitted datum is an element from the input `array`. This stream __always__ operates in `objectMode`. All other Readable `options` are honored: `encoding` and `highWaterMark`.
+
+To convert an `array` to a readable stream,
+
+``` javascript
 var stream = readArray( [1,2,3,4] );
 ```
 
