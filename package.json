@@ -1,5 +1,5 @@
 {
-  "name": "flow-read-array",
+  "name": "flow-from-array",
   "version": "1.1.1",
   "description": "Converts an array to a readable stream.",
   "author": {
@@ -28,7 +28,9 @@
     "flow.io",
     "readable",
     "readstream",
-    "array"
+    "array",
+    "from",
+    "source"
   ],
   "bugs": {
     "url": "https://github.com/flow-io/from-array-node/issues"

@@ -1,16 +1,14 @@
-read-array
+from-array
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > Converts an array to a [readable stream](http://nodejs.org/api/stream.html#stream_class_stream_readable).
 
-__DEPRECATED__: use [flow-from-array](https://github.com/flow-io/from-array-node).
-
 
 ## Installation
 
 ``` bash
-$ npm install flow-read-array
+$ npm install flow-from-array
 ```
 
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
@@ -21,17 +19,17 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 To use the module,
 
 ``` javascript
-var readArray = require( 'flow-read-array' );
+var fromArray = require( 'flow-from-array' );
 ```
 
-#### readArray( arr[, options] )
+#### fromArray( arr[, options] )
 
 Returns a readable `stream` where each emitted datum is an element from the input `array`.
 
 To convert an `array` to a readable stream,
 
 ``` javascript
-var stream = readArray( [1,2,3,4] );
+var stream = fromArray( [1,2,3,4] );
 ```
 
 To set the readable stream `options`,
@@ -43,11 +41,11 @@ var opts = {
 		'highWaterMark': 8
 	};
 
-stream = readArray( ['b','e','e','p'], opts );
+stream = fromArray( ['b','e','e','p'], opts );
 ```
 
 
-#### readArray.factory( [options] )
+#### fromArray.factory( [options] )
 
 Returns a reusable stream factory. The factory method ensures streams are configured identically by using the same set of provided `options`.
 
@@ -58,7 +56,7 @@ var opts = {
 		'highWaterMark': 8
 	};
 
-var factory = readArray.factory( opts );
+var factory = fromArray.factory( opts );
 
 var streams = new Array( 10 ),
 	data;
@@ -74,14 +72,14 @@ for ( var i = 0; i < streams.length; i++ ) {
 ```
 
 
-#### readArray.objectMode( arr[, options] )
+#### fromArray.objectMode( arr[, options] )
 
 This method is a convenience function to create readable streams which always operate in `objectMode`. The method will __always__ override the `objectMode` option in `options`.
 
 ``` javascript
-var readArray = require( 'flow-read-array' ).objectMode;
+var fromArray = require( 'flow-from-array' ).objectMode;
 
-readArray( ['b','e','e','p'] )
+fromArray( ['b','e','e','p'] )
 	.pipe( process.stdout );
 ```
 
@@ -91,7 +89,7 @@ readArray( ['b','e','e','p'] )
 ``` javascript
 var toString = require( 'flow-to-string' ),
 	append = require( 'flow-append' ).objectMode,
-	readArray = require( 'flow-read-array' );
+	fromArray = require( 'flow-from-array' );
 
 // Create some data...
 var data = new Array( 1000 );
@@ -100,10 +98,10 @@ for ( var i = 0; i < data.length; i++ ) {
 }
 
 // Create a readable stream:
-var readStream = readArray( data );
+var readableStream = fromArray( data );
 
 // Pipe the data:
-readStream
+readableStream
 	.pipe( toString() )
 	.pipe( append( '\n' ) )
 	.pipe( process.stdout );
@@ -160,20 +158,20 @@ $ open reports/coverage/lcov-report/index.html
 Copyright &copy; 2014. Athan Reines.
 
 
-[npm-image]: http://img.shields.io/npm/v/flow-read-array.svg
-[npm-url]: https://npmjs.org/package/flow-read-array
+[npm-image]: http://img.shields.io/npm/v/flow-from-array.svg
+[npm-url]: https://npmjs.org/package/flow-from-array
 
-[travis-image]: http://img.shields.io/travis/flow-io/read-array-node/master.svg
-[travis-url]: https://travis-ci.org/flow-io/read-array-node
+[travis-image]: http://img.shields.io/travis/flow-io/from-array-node/master.svg
+[travis-url]: https://travis-ci.org/flow-io/from-array-node
 
-[coveralls-image]: https://img.shields.io/coveralls/flow-io/read-array-node/master.svg
-[coveralls-url]: https://coveralls.io/r/flow-io/read-array-node?branch=master
+[coveralls-image]: https://img.shields.io/coveralls/flow-io/from-array-node/master.svg
+[coveralls-url]: https://coveralls.io/r/flow-io/from-array-node?branch=master
 
-[dependencies-image]: http://img.shields.io/david/flow-io/read-array-node.svg
-[dependencies-url]: https://david-dm.org/flow-io/read-array-node
+[dependencies-image]: http://img.shields.io/david/flow-io/from-array-node.svg
+[dependencies-url]: https://david-dm.org/flow-io/from-array-node
 
-[dev-dependencies-image]: http://img.shields.io/david/dev/flow-io/read-array-node.svg
-[dev-dependencies-url]: https://david-dm.org/dev/flow-io/read-array-node
+[dev-dependencies-image]: http://img.shields.io/david/dev/flow-io/from-array-node.svg
+[dev-dependencies-url]: https://david-dm.org/dev/flow-io/from-array-node
 
-[github-issues-image]: http://img.shields.io/github/issues/flow-io/read-array-node.svg
-[github-issues-url]: https://github.com/flow-io/read-array-node/issues
+[github-issues-image]: http://img.shields.io/github/issues/flow-io/from-array-node.svg
+[github-issues-url]: https://github.com/flow-io/from-array-node/issues

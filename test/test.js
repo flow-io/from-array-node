@@ -22,7 +22,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'flow-read-array', function tests() {
+describe( 'flow-from-array', function tests() {
 	'use strict';
 
 	describe( 'class', function tests() {
@@ -156,25 +156,25 @@ describe( 'flow-read-array', function tests() {
 
 		it( 'should return a stream in object mode', function test( done ) {
 			var Stream = stream,
-				readArray = stream.objectMode,
+				fromArray = stream.objectMode,
 				opts,
 				s,
 				expected;
 
 			// Returns Stream instance:
-			assert.instanceOf( readArray([]), Stream );
+			assert.instanceOf( fromArray([]), Stream );
 
 			// Sets the objectMode option:
 			opts = {
 				'objectMode': false
 			};
-			s = readArray( [], opts );
+			s = fromArray( [], opts );
 			assert.strictEqual( opts.objectMode, true );
 
 			// Behaves as expected:
 			expected = ['beep', 'boop', 'bap' ];
 
-			mockRead( readArray( expected ), onData );
+			mockRead( fromArray( expected ), onData );
 
 			function onData( error, actual ) {
 				if ( error ) {

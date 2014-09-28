@@ -1,6 +1,6 @@
 var toString = require( 'flow-to-string' ),
 	append = require( 'flow-append' ).objectMode,
-	readArray = require( 'flow-read-array' );
+	fromArray = require( 'flow-from-array' );
 
 // Create some data...
 var data = new Array( 1000 );
@@ -9,10 +9,10 @@ for ( var i = 0; i < data.length; i++ ) {
 }
 
 // Create a readable stream:
-var readStream = readArray( data );
+var readableStream = fromArray( data );
 
 // Pipe the data:
-readStream
+readableStream
 	.pipe( toString() )
 	.pipe( append( '\n' ) )
 	.pipe( process.stdout );
