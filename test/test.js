@@ -54,7 +54,7 @@ describe( 'flow-read-array', function tests() {
 			}
 		});
 
-		it( 'should throw an error if not provided a bad option', function test() {
+		it( 'should throw an error if provided a bad option', function test() {
 			expect( foo ).to.throw( TypeError );
 
 			function foo() {
