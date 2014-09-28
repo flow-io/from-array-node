@@ -72,6 +72,17 @@ for ( var i = 0; i < streams.length; i++ ) {
 ```
 
 
+#### readArray.objectMode( arr[, options] )
+
+This method is a convenience function to create readable streams which always operate in `objectMode`. The method will __always__ override the `objectMode` option in `options`.
+
+``` javascript
+var readArray = require( 'flow-read-array' ).objectMode;
+
+stream = readArray( ['b','e','e','p'] );
+```
+
+
 ## Examples
 
 ``` javascript
