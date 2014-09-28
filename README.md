@@ -4,6 +4,8 @@ read-array
 
 > Converts an array to a [readable stream](http://nodejs.org/api/stream.html#stream_class_stream_readable).
 
+__DEPRECATED__: use [flow-from-array](https://github.com/flow-io/from-array-node).
+
 
 ## Installation
 
