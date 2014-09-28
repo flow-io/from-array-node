@@ -88,7 +88,7 @@ readArray( ['b','e','e','p'] )
 
 ``` javascript
 var toString = require( 'flow-to-string' ),
-	newline = require( 'flow-newline' ),
+	append = require( 'flow-append' ).objectMode,
 	readArray = require( 'flow-read-array' );
 
 // Create some data...
@@ -103,7 +103,7 @@ var readStream = readArray( data );
 // Pipe the data:
 readStream
 	.pipe( toString() )
-	.pipe( newline() )
+	.pipe( append( '\n' ) )
 	.pipe( process.stdout );
 ```
 
