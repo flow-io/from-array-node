@@ -19,7 +19,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 To use the module,
 
 ``` javascript
-var readArray = require( 'flow-ready-array' );
+var readArray = require( 'flow-read-array' );
 ```
 
 #### readArray( arr[, options] )
