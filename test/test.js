@@ -154,15 +154,36 @@ describe( 'flow-read-array', function tests() {
 			expect( stream.objectMode ).to.be.a( 'function' );
 		});
 
-		it( 'should return an object mode stream', function test() {
-			var Stream = stream;
-			assert.instanceOf( stream.objectMode([]), Stream );
+		it( 'should return a stream in object mode', function test( done ) {
+			var Stream = stream,
+				readArray = stream.objectMode,
+				opts,
+				s,
+				expected;
 
-			var opts = {
-					'objectMode': false
-				};
-			var s = stream.objectMode( [], opts );
+			// Returns Stream instance:
+			assert.instanceOf( readArray([]), Stream );
+
+			// Sets the objectMode option:
+			opts = {
+				'objectMode': false
+			};
+			s = readArray( [], opts );
 			assert.strictEqual( opts.objectMode, true );
+
+			// Behaves as expected:
+			expected = ['beep', 'boop', 'bap' ];
+
+			mockRead( readArray( expected ), onData );
+
+			function onData( error, actual ) {
+				if ( error ) {
+					assert.notOk( true );
+					return;
+				}
+				assert.deepEqual( expected, actual );
+				done();
+			}
 		});
 
 	});

@@ -79,7 +79,8 @@ This method is a convenience function to create readable streams which always op
 ``` javascript
 var readArray = require( 'flow-read-array' ).objectMode;
 
-stream = readArray( ['b','e','e','p'] );
+readArray( ['b','e','e','p'] )
+	.pipe( process.stdout );
 ```
 
 
