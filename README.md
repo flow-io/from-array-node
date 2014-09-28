@@ -47,7 +47,7 @@ stream = readArray( ['b','e','e','p'], opts );
 
 #### readArray.factory( [options] )
 
-Returns a reusable stream factory. The factory method ensures streams are configured identically.
+Returns a reusable stream factory. The factory method ensures streams are configured identically by using the same set of provided `options`.
 
 ``` javascript
 var opts = {
