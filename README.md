@@ -24,7 +24,7 @@ var readArray = require( 'flow-ready-array' );
 
 #### readArray( arr[, options] )
 
-Returns a readable `stream` where each emitted datum is an element from the input `array`. The stream __always__ operates in `objectMode`. All other Readable `options` are honored: `encoding` and `highWaterMark`.
+Returns a readable `stream` where each emitted datum is an element from the input `array`.
 
 To convert an `array` to a readable stream,
 
@@ -32,15 +32,43 @@ To convert an `array` to a readable stream,
 var stream = readArray( [1,2,3,4] );
 ```
 
-The default `highWaterMark` is `16kb` and `encoding` is `null`. To set the `options`,
+To set the readable stream `options`,
 
 ``` javascript
 var opts = {
+		'objectMode': true,
 		'encoding': 'utf8',
 		'highWaterMark': 8
 	};
 
 stream = readArray( ['b','e','e','p'], opts );
+```
+
+
+#### readArray.factory( [options] )
+
+Returns a reusable stream factory. The factory method ensures streams are configured identically.
+
+``` javascript
+var opts = {
+		'objectMode': true,
+		'encoding': 'utf8',
+		'highWaterMark': 8
+	};
+
+var factory = readArray.factory( opts );
+
+var streams = new Array( 10 ),
+	data;
+
+// Create many streams configured identically but reading different datasets...
+for ( var i = 0; i < streams.length; i++ ) {
+	data = new Array( 100 );
+	for ( var j = 0; j < data.length; j++ ) {
+		data[ j ] = Math.random();
+	}
+	streams[ i ] = factory( data );
+}
 ```
 
 
