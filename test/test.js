@@ -111,6 +111,113 @@ describe( 'flow-from-array', function tests() {
 			}
 		});
 
+		it( 'should address non-buffer array elements when not in object mode', function test( done ) {
+			var data = [
+					'beep',
+					undefined,
+					null,
+					false,
+					NaN,
+					Number.NEGATIVE_INFINITY,
+					function(){},
+					[1,2,3,4],
+					{'beep':'boop'}
+				],
+				expected = [
+					'beep',
+					'undefined',
+					'null',
+					'false',
+					'NaN',
+					'-Infinity',
+					'function (){}',
+					'[1,2,3,4]',
+					'{\"beep\":\"boop\"}'
+				],
+				opts = {
+					'objectMode': false
+				};
+
+			mockRead( stream( data, opts ), onData );
+
+			function onData( error, actual ) {
+				if ( error ) {
+					assert.notOk( true );
+					return;
+				}
+				for ( var i = 0; i < actual.length; i++ ) {
+					actual[ i ] = actual[ i ].toString();
+				}
+				assert.deepEqual( expected, actual );
+				done();
+			}
+		});
+
+		it( 'should allow non-string and non-buffer array (except undefined and null) elements to pass through in object mode', function test( done ) {
+			var data = [
+					false,
+					NaN,
+					Number.NEGATIVE_INFINITY,
+					onData,
+					[1,2,3,4],
+					{'beep':'boop'}
+				],
+				expected = [
+					false,
+					NaN,
+					Number.NEGATIVE_INFINITY,
+					onData,
+					[1,2,3,4],
+					{'beep':'boop'}
+				],
+				opts = {
+					'objectMode': true
+				};
+
+			mockRead( stream( data, opts ), onData );
+
+			function onData( error, actual ) {
+				if ( error ) {
+					assert.notOk( true );
+					return;
+				}
+				assert.deepEqual( expected, actual );
+				done();
+			}
+		});
+
+		it( 'should emit an error if provided an array with null values when in object mode', function test( done ) {
+			var opts, s;
+
+			opts = {
+				'objectMode': true
+			};
+			s = stream( [null], opts );
+			s.on( 'data', function(){});
+			s.on( 'error', onError );
+
+			function onError( error ) {
+				assert.ok( true );
+				done();
+			}
+		});
+
+		it( 'should emit an error if provided an array with undefined values when in object mode', function test( done ) {
+			var opts, s;
+
+			opts = {
+				'objectMode': true
+			};
+			s = stream( [undefined], opts );
+			s.on( 'data', function(){});
+			s.on( 'error', onError );
+
+			function onError( error ) {
+				assert.ok( true );
+				done();
+			}
+		});
+
 		it( 'can be destroyed', function test( done ) {
 			var s = stream([]);
 			s.on( 'close', function onClose() {

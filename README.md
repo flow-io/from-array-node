@@ -118,6 +118,22 @@ $ node ./examples/index.js
 
 This stream is a Streams2 version of [event-stream](https://github.com/dominictarr/event-stream) and its `readArray()` method.
 
+When in `objectMode`, an `array` cannot contain `null` or `undefined` values. An `array` containing either of these values will emit an `error` and close.
+
+When not in `objectMode`, all `array` values are buffered. This means that anything which is not a `buffer` or a `string` is coerced into being a `string`. Values are stringified according to the following conventions:
+
+*	`undefined`: `"undefined"`
+*	`null`: `"null"
+*	`number`: `<number>.toString()`
+*	`boolean`: `<boolean>.toString()`
+*	`function`: `<function>.toString()`
+*	`array`: `JSON.stringify( <array> )`
+*	`object`: `JSON.stringify( <object> )`
+
+With the exception of `arrays` and `objects`, the conventions follow the [ES5 specification](http://es5.github.io/#x9.8). `arrays` and `objects` are more conveniently stringified.
+
+Note that the stringified values are buffered according to the `encoding` option. If the `encoding` is `null` (default), buffering assumes `utf8` encoding. 
+
 
 ## Tests
 
