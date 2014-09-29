@@ -87,8 +87,7 @@ fromArray( ['b','e','e','p'] )
 ## Examples
 
 ``` javascript
-var toString = require( 'flow-to-string' ),
-	append = require( 'flow-append' ).objectMode,
+var append = require( 'flow-append' ).objectMode,
 	fromArray = require( 'flow-from-array' );
 
 // Create some data...
@@ -102,7 +101,6 @@ var readableStream = fromArray( data );
 
 // Pipe the data:
 readableStream
-	.pipe( toString() )
 	.pipe( append( '\n' ) )
 	.pipe( process.stdout );
 ```
@@ -123,7 +121,7 @@ When in `objectMode`, an `array` cannot contain `null` or `undefined` values. An
 When not in `objectMode`, all `array` values are buffered. This means that anything which is not a `buffer` or a `string` is coerced into being a `string`. Values are stringified according to the following conventions:
 
 *	`undefined`: `"undefined"`
-*	`null`: `"null"
+*	`null`: `"null"`
 *	`number`: `<number>.toString()`
 *	`boolean`: `<boolean>.toString()`
 *	`function`: `<function>.toString()`
