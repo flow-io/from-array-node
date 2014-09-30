@@ -1,5 +1,5 @@
 var append = require( 'flow-append' ).objectMode,
-	fromArray = require( 'flow-from-array' );
+	fromArray = require( './../lib' );
 
 // Create some data...
 var data = new Array( 1000 );
